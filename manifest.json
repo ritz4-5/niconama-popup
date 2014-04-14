@@ -1,0 +1,23 @@
+{
+  "name": "ニコ生ポップアップ",
+  "version": "1.0",
+  "description": "ニコ生のプレーヤーをポップアップで表示する拡張機能",
+  "icons": {
+      "48": "images/icon.png"
+   },
+  "content_scripts":[
+      {
+          "matches" : ["http://live.nicovideo.jp/watch/lv*"],
+          "js": ["js/jquery-2.1.0.min.js", "js/popup.js"]
+      }
+  ],
+  "permissions": [
+    
+   "tabs",
+   "http://live.nicovideo.jp/",
+   "http://ajax.googleapis.com/"
+    
+  ],
+
+  "manifest_version": 2
+}
