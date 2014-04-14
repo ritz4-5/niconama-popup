@@ -5,6 +5,9 @@
   "icons": {
       "48": "images/icon.png"
    },
+  "background":{
+      "page": "background.html"
+  },
   "content_scripts":[
       {
           "matches" : ["http://live.nicovideo.jp/watch/lv*"],
