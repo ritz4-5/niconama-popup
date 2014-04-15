@@ -6,9 +6,9 @@ $("#watch_title_box .title").append('<input id="popup_button" type="button" valu
 $('#popup_button').click(function(){
     //別ウィンドウで現在URLを開く
     var currentUrl = location.href;
-    var popupFlag = "popup=true";
-    chrome.runtime.sendMessage({greeting: "popup", openurl: currentUrl+popupFlag},function(response){
-        if(response.finish) console.log("returned");
+    var requestUrl = makeRequestUrl(currentUrl);
+    chrome.runtime.sendMessage({greeting: "popup", openurl: requestUrl},function(response){
+        if(response.finish) location.href = "http://live.nicovideo.jp/";
     });
 });
 
@@ -21,4 +21,15 @@ if(location.href.indexOf("popup=true") != -1){
 
     $("body").html($("#watch_player_box").html());
 
+}
+
+function makeRequestUrl(url){
+    var popupFlag = "popup=true";
+    var requestUrl;
+    if(!location.search/*Getリクエストがない場合*/){
+        requestUrl = url + "?" + popupFlag;
+    }else{
+        requestUrl = url + "&" + popupFlag;
+    }
+    return requestUrl;
 }
